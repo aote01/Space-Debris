@@ -3,28 +3,28 @@ using Statistics
 
 function phong_model_entirely(phi, d, C_spec, C_diff, alpha, u_n, u_sun, u_obs, A)
 
-"""
-    phong_model_entirely(phi, d, C_spec, C_diff, alpha, u_n, u_sun, u_obs, A) -> Float64
+    """
+        phong_model_entirely(phi, d, C_spec, C_diff, alpha, u_n, u_sun, u_obs, A) -> Float64
 
-Calcula la magnitud aparente `m_app` con un modelo tipo Phong, sumando contribuciones
-por faceta.
+        Calcula la magnitud aparente `m_app` con un modelo tipo Phong, sumando contribuciones
+        por faceta.
 
-Parámetros
-----------
-- `phi`   :: Real o AbstractVector    # Irradiancia solar [W/m^2] (escalar o 1×N / N)
-- `d`     :: Real o AbstractVector    # Distancia faceta-observador [m] (esc. o 1×N / N)
-- `C_spec`:: Real                     # Coeficiente especular
-- `C_diff`:: Real                     # Albedo difuso (usa C_diff/π si quieres Lambert físico)
-- `alpha` :: Real                     # Exponente Phong
-- `u_n`   :: AbstractMatrix{<:Real}   # Normales 3×N (o N×3 que se transpone)
-- `u_sun` :: AbstractVecOrMat{<:Real} # 3×1 o 3×N (o fila 1×3 -> se transpone)
-- `u_obs` :: AbstractVecOrMat{<:Real} # 3×1 o 3×N (o fila 1×3 -> se transpone)
-- `A`     :: Real o AbstractVector    # Áreas por faceta [m^2] (esc. o 1×N / N)
+        Parámetros
+        ----------
+        - `phi`   :: Real o AbstractVector    # Irradiancia solar [W/m^2] (escalar o 1×N / N)
+        - `d`     :: Real o AbstractVector    # Distancia faceta-observador [m] (esc. o 1×N / N)
+        - `C_spec`:: Real                     # Coeficiente especular
+        - `C_diff`:: Real                     # Albedo difuso (usa C_diff/π si quieres Lambert físico)
+        - `alpha` :: Real                     # Exponente Phong
+        - `u_n`   :: AbstractMatrix{<:Real}   # Normales 3×N (o N×3 que se transpone)
+        - `u_sun` :: AbstractVecOrMat{<:Real} # 3×1 o 3×N (o fila 1×3 -> se transpone)
+        - `u_obs` :: AbstractVecOrMat{<:Real} # 3×1 o 3×N (o fila 1×3 -> se transpone)
+        - `A`     :: Real o AbstractVector    # Áreas por faceta [m^2] (esc. o 1×N / N)
 
-Devuelve
---------
-- `m_app` :: Float64  # magnitud aparente (referencia de -26.7 y normalización por mean(phi))
-"""
+        Devuelve
+        --------
+        - `m_app` :: Float64  # magnitud aparente (referencia de -26.7 y normalización por mean(phi))
+    """
 
     epsc = 1e-12
     TOL  = 1e-9
